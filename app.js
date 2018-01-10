@@ -1,21 +1,21 @@
 const Gdax = require('gdax');
-const bunyan = require('bunyan');
 const bformat = require('bunyan-format');
+const bunyan = require('bunyan');
 
 const formatOut = bformat({ outputMode: 'long' });
 const logger = bunyan.createLogger({ name: 'app', stream: formatOut, level: 'debug' });
 
 const config = require('./config');
 
-const publicClient = new Gdax.PublicClient();
+const apiURI = config.sandboxMode ? 'https://api-public.sandbox.gdax.com' : 'https://api.gdax.com'
 
-const main = () => {
-  publicClient
-    .getProducts()
-    .then((data) => { logger.info(data); })
-    .catch((error) => { logger.error(error); });
-};
+const authedSandboxClient = new Gdax.AuthenticatedClient(
+  config.gdax.sandbox.apiKey,
+  config.gdax.sandbox.secret,
+  config.gdax.sandbox.passPhrase,
+  apiURI,
+);
 
-main();
-
-logger.info(config.email);
+authedSandboxClient.getAccounts()
+  .then((data) => { logger.info(data); })
+  .catch((error) => { logger.error(error); });
