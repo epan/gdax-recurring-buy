@@ -1,0 +1,5 @@
+{
+  "sandboxURI": "https://api-public.sandbox.gdax.com",
+  "productionURI": "https://api.gdax.com",
+  "BTCUSD": "BTC-USD"
+}
