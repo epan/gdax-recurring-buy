@@ -1,0 +1,8 @@
+{
+  "name": "gdax-recurring-buy",
+  "profile": "gdax-recurring-buy",
+  "regions": ["us-east-1"],
+  "lambda": {
+    "accelerate": true
+  }
+}
