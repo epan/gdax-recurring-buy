@@ -1,13 +1,16 @@
 {
   "sandboxMode": true,
-  "gdax": {
+  "numberOfDays": 1,
+  "production": {
     "apiKey": "your_api_key",
     "secret": "your_secret",
-    "passPhrase": "your_passPhrase"
+    "passPhrase": "your_passPhrase",
+    "apiURI": "https://api.gdax.com"
   },
   "sandbox": {
     "apiKey": "your_api_key",
     "secret": "your_secret",
-    "passPhrase": "your_passPhrase"
+    "passPhrase": "your_passPhrase",
+    "apiURI": "https://api-public.sandbox.gdax.com"
   }
 }
