@@ -22,6 +22,7 @@ Recurring buy of bitcoin via the GDAX API
 ### Testing the functionality on sandbox
 1. In your `config.json`, fill out the sandbox API keys, secret, and passphrase
 1. Make sure in `config.json` that the `sandboxMode` is set to `true`
+1. The default frequency in `config.json` is set at `numberOfDays` to `1` so you may want to change the frequency in `app.js` to something like `3000` to see a market order filled every 3 seconds
 
 ### Running the app
 1. In directory of the cloned repository of this project, run `node app.js`
