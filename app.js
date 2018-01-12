@@ -26,7 +26,7 @@ const buyParams = {
   type: 'market',
   side: 'buy',
   product_id: 'BTC-USD', // ETH-USD and LTC-USD are other options
-  size: 0.01, // 0.01 means 0.01 BTC which is the minimum and the minimum increment is 0.1
+  size: 0.01, // 0.01 means 0.01 BTC which is both the minimum buy and increment
 };
 
 const startRecurringOrder = () => {
