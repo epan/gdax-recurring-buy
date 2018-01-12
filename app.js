@@ -3,35 +3,46 @@ const bformat = require('bunyan-format');
 const bunyan = require('bunyan');
 
 const formatOut = bformat({ outputMode: 'long' });
-const logger = bunyan.createLogger({ name: 'app', stream: formatOut, level: 'debug' });
+const logger = bunyan.createLogger({
+  name: 'app',
+  stream: formatOut,
+  level: 'debug',
+});
 
 const config = require('./config');
-const CONSTS = require('./CONSTS');
 
-const apiURI = config.sandboxMode ? CONSTS.sandboxURI : CONSTS.productionURI;
+const { sandbox, production, sandboxMode, numberOfDays } = config;
+const DAY = 1000 * 60 * 60 * 24;
+const env = sandboxMode ? sandbox : production;
 
-const authedSandboxClient = new Gdax.AuthenticatedClient(
-  config.gdax.sandbox.apiKey,
-  config.gdax.sandbox.secret,
-  config.gdax.sandbox.passPhrase,
-  apiURI,
+const authedClient = new Gdax.AuthenticatedClient(
+  env.apiKey,
+  env.secret,
+  env.passPhrase,
+  env.apiURI,
 );
 
+
 const buyParams = {
-  product_id: CONSTS.BTCUSD,
-  size: 0.01,
-  price: 100,
+  type: 'market',
+  side: 'buy',
+  product_id: 'BTC-USD', // ETH-USD and LTC-USD are other options
+  size: 0.01, // 0.01 means 0.01 BTC which is the minimum and the minimum increment is 0.1
 };
 
-// Creates an order for 0.01 BTC at $100 USD every 0.3 seconds
-const buyBTC = () => {
-  authedSandboxClient.buy(buyParams)
-  .then((data) => { logger.info(data); })
-  .catch((error) => { logger.error(error); });
+const startRecurringOrder = () => {
+  authedClient
+    .placeOrder(buyParams)
+    .then((data) => {
+      logger.info(data);
+    })
+    .catch((error) => {
+      logger.error(error);
+    });
 
   setTimeout(() => {
-    buyBTC();
-  }, 300);
+    startRecurringOrder();
+  }, numberOfDays * DAY);
 };
 
-buyBTC();
+startRecurringOrder();
