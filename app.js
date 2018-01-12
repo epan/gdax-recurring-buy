@@ -22,7 +22,6 @@ const authedClient = new Gdax.AuthenticatedClient(
   env.apiURI,
 );
 
-
 const buyParams = {
   type: 'market',
   side: 'buy',
