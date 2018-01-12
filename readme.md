@@ -18,6 +18,7 @@ Recurring buy of bitcoin via the GDAX API
 1. You may need to [register for Coinbase](https://www.coinbase.com/join/52fb1644307058e4db00003f) to access GDAX
 1. Create GDAX sandbox API keys with "trade" permissions at [https://public.sandbox.gdax.com/settings/api/](https://public.sandbox.gdax.com/settings/api)
 1. Create GDAX API keys with "trade" permissions at [https://www.gdax.com/settings/api](https://www.gdax.com/settings/api)
+![image of "trade" setting on](https://d2ffutrenqvap3.cloudfront.net/items/1V1G1U2M1u2b0H161I3a/Image%202018-01-12%20at%201.02.46%20AM.png?v=9a301ac5)
 
 ### Testing the functionality on sandbox
 1. In your `config.json`, fill out the sandbox API keys, secret, and passphrase
