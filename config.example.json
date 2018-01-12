@@ -1,6 +1,6 @@
 {
   "sandboxMode": true,
-  "numberOfDays": 1,
+  "numberOfDays": 7,
   "production": {
     "apiKey": "your_api_key",
     "secret": "your_secret",
