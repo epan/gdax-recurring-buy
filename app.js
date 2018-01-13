@@ -1,3 +1,4 @@
+require('dotenv').config();
 const Gdax = require('gdax');
 const bformat = require('bunyan-format');
 const bunyan = require('bunyan');
@@ -11,15 +12,14 @@ const logger = bunyan.createLogger({
 
 const config = require('./config');
 
-const { sandbox, production, sandboxMode, numberOfDays } = config;
+const { numberOfDays } = config;
 const DAY = 1000 * 60 * 60 * 24;
-const env = sandboxMode ? sandbox : production;
 
 const authedClient = new Gdax.AuthenticatedClient(
-  env.apiKey,
-  env.secret,
-  env.passPhrase,
-  env.apiURI,
+  process.env.API_KEY,
+  process.env.SECRET,
+  process.env.PASSPHRASE,
+  process.env.API_URI,
 );
 
 const buyParams = {
