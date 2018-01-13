@@ -30,8 +30,15 @@ const buyParams = {
 };
 
 const startRecurringOrder = () => {
-  authedClient
-    .placeOrder(buyParams)
+  authedClient.placeOrder(buyParams)
+    .then((data) => {
+      logger.info(data);
+    })
+    .catch((error) => {
+      logger.error(error);
+    });
+
+  authedClient.getFills()
     .then((data) => {
       logger.info(data);
     })
