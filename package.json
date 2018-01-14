@@ -13,6 +13,7 @@
     "bluebird": "^3.5.0",
     "bunyan": "^1.8.12",
     "bunyan-format": "^0.2.1",
+    "dotenv": "^4.0.0",
     "gdax": "github:coinbase/gdax-node",
     "mailgun-js": "^0.13.1"
   },
